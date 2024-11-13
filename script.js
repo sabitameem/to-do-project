@@ -31,38 +31,74 @@
 // alert()
 
 
-// Solution:
+// Solution 1:
 
 
-// Get references to the input, button, and task list
-const taskInput = document.getElementById("task");
-const addTaskButton = document.getElementById("addTask");
-const taskList = document.getElementById("taskList");
 
-// Add event listener to the "Add" button
-addTaskButton.addEventListener("click", function () {
-    const taskText = taskInput.value.trim(); // Trim any extra spaces
 
-    // Check if input is empty
-    if (taskText === "") {
-        alert("Please enter a task!");
-        return; // Stop execution if input is empty
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const taskInput = document.getElementById("task");
+    const addTaskButton = document.getElementById("addTask");
+    const taskList = document.getElementById("taskList");
 
-    const taskItem = document.createElement("li");
+    addTaskButton.addEventListener("click", function () {
+        const taskText = taskInput.value.trim(); // Trim any extra spaces
 
-    // Giving the inner HTML value inside the <li>
-    taskItem.innerHTML = `${taskText} <button class="delete-btn">Delete</button>`;
+        // Check if the input is empty
+        if (taskText === "") {
+            alert("Please enter a task before adding.");
+            taskInput.value = ""; // Clear the input
+            return; // Stop the function if the input is empty
+        }
 
-    // Appending the task item to the list
-    taskList.appendChild(taskItem);
+        const taskItem = document.createElement("li");
+        
+        // Giving the inner HTML value inside the li
+        taskItem.innerHTML = `${taskText} <button id="delete-btn">Delete</button>`;
 
-    // Clear the input field after adding the task
-    taskInput.value = "";
+        // Appending or adding child inside the ul or parent
+        taskList.appendChild(taskItem);
+        taskInput.value = ""; // Clear the input after adding the task
 
-    // Delete functionality
-    const deleteButton = taskItem.querySelector(".delete-btn");
-    deleteButton.addEventListener("click", function () {
-        taskList.removeChild(taskItem);
+        // Delete functionality
+        const deleteButton = taskItem.querySelector("#delete-btn");
+        deleteButton.addEventListener("click", function () {
+            taskList.removeChild(taskItem);
+        });
     });
 });
+
+
+// solution 2
+// // Get references to the input, button, and task list
+// const taskInput = document.getElementById("task");
+// const addTaskButton = document.getElementById("addTask");
+// const taskList = document.getElementById("taskList");
+
+// // Add event listener to the "Add" button
+// addTaskButton.addEventListener("click", function () {
+//     const taskText = taskInput.value.trim(); // Trim any extra spaces
+
+//     // Check if input is empty
+//     if (taskText === "") {
+//         alert("Please enter a task!");
+//         return; // Stop execution if input is empty
+//     }
+
+//     const taskItem = document.createElement("li");
+
+//     // Giving the inner HTML value inside the <li>
+//     taskItem.innerHTML = `${taskText} <button class="delete-btn">Delete</button>`;
+
+//     // Appending the task item to the list
+//     taskList.appendChild(taskItem);
+
+//     // Clear the input field after adding the task
+//     taskInput.value = "";
+
+//     // Delete functionality
+//     const deleteButton = taskItem.querySelector(".delete-btn");
+//     deleteButton.addEventListener("click", function () {
+//         taskList.removeChild(taskItem);
+//     });
+// });
